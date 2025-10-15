@@ -1,5 +1,6 @@
 //23303
 //assignment 1 dll
+//"Efficient Data Management Using Linked Lists: Implementing Dynamic Operations for Contact Management System" Utilize Singly and Doubly Linked Lists to manage a Contact Management System. The system will support key operations such as: • Creating a contact list dynamically. • Adding new contacts efficiently. • Deleting contacts when no longer needed. • Searching for specific contacts based on name or number. • Reversing the contact list for alternate viewing orders. • Traversing through the list to display all stored contacts.
 #include<iostream>
 #include<cstring>
 using namespace std;
@@ -289,21 +290,23 @@ string contactList::search(string sName){
 
 //reversing a list
 void contactList::contactReverse(){
-    contact *c,*t;
+    contact *c,*t,*r;
+    t = NULL;
+    r = NULL;
     c = head;
+    if (head->next == NULL)
+    {
+        return;
+    }
     while (c != NULL)
     {
-        t = c->prev;
-        c->prev=c->next;
-        c->next = t;
-        c = c->next;
+        t = c->next;
+        c -> next = r;
+        r = c;
+        c = t;
     }
-    if (t != NULL)
-    {
-        head = t->prev;
-    }
-    
-    
+    head = r;
+    return; 
 }
 
 
@@ -363,3 +366,88 @@ int main(){
     }
     return 0;
 }
+
+/*Thought for 27s-------------------------------PHONEBOOK-------------------------------
+Enter the name : John
+Enter the number : 1234567890
+Enter the email : john@example.com
+Enter the address : 123 Main St
+Do you want to continue to enter another contact? (0 to continue, any other number to terminate) : 0
+Enter the name : Jane
+Enter the number : 9876543210
+Enter the email : jane@example.com
+Enter the address : 456 Oak Ave
+Do you want to continue to enter another contact? (0 to continue, any other number to terminate) : 1
+Enter the operation:
+1.Add contact anywhere
+2.Add Contact at the end
+3.Add contact at the start
+4.Display Contacts
+5.Search by name
+6.Reverse the contact list
+7.Delete a contact
+Operation : 4
+-------------------------------PHONEBOOK-------------------------------
+1 . 1234567890	John	john@example.com	123 Main St
+2 . 9876543210	Jane	jane@example.com	456 Oak Ave
+Continue operations ? (0 to continue, anything else to termniate) : 0
+Enter the operation:
+1.Add contact anywhere
+2.Add Contact at the end
+3.Add contact at the start
+4.Display Contacts
+5.Search by name
+6.Reverse the contact list
+7.Delete a contact
+Operation : 5
+Enter the name : John
+Record found :
+1234567890	John	john@example.com	123 Main St
+Continue operations ? (0 to continue, anything else to termniate) : 0
+Enter the operation:
+1.Add contact anywhere
+2.Add Contact at the end
+3.Add contact at the start
+4.Display Contacts
+5.Search by name
+6.Reverse the contact list
+7.Delete a contact
+Operation : 6
+Continue operations ? (0 to continue, anything else to termniate) : 0
+Enter the operation:
+1.Add contact anywhere
+2.Add Contact at the end
+3.Add contact at the start
+4.Display Contacts
+5.Search by name
+6.Reverse the contact list
+7.Delete a contact
+Operation : 4
+-------------------------------PHONEBOOK-------------------------------
+1 . 9876543210	Jane	jane@example.com	456 Oak Ave
+2 . 1234567890	John	john@example.com	123 Main St
+Continue operations ? (0 to continue, anything else to termniate) : 0
+Enter the operation:
+1.Add contact anywhere
+2.Add Contact at the end
+3.Add contact at the start
+4.Display Contacts
+5.Search by name
+6.Reverse the contact list
+7.Delete a contact
+Operation : 7
+Enter contact number to be deleted : 1234567890
+Continue operations ? (0 to continue, anything else to termniate) : 0
+Enter the operation:
+1.Add contact anywhere
+2.Add Contact at the end
+3.Add contact at the start
+4.Display Contacts
+5.Search by name
+6.Reverse the contact list
+7.Delete a contact
+Operation : 4
+-------------------------------PHONEBOOK-------------------------------
+1 . 9876543210	Jane	jane@example.com	456 Oak Ave
+Continue operations ? (0 to continue, anything else to termniate) : 1
+*/
