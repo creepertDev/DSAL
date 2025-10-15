@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // 23303
 // assignment 3
 //"Implementing Queues and Stacks Using Linked Lists for Real-World Task Management Systems" This problem involves designing and implementing queues and stacks using linked lists, focusing on their practical applications in real-world scenarios such as: • Task Scheduling System (Queue): Managing tasks in a first-in, first-out (FIFO) order, such as print job scheduling or process management in an operating system. • Undo/Redo Functionality (Stack): Implementing an undo/redo feature in text editors or design software using a last-in, first-out (LIFO) approach.
@@ -20,6 +21,18 @@ struct element{
     string title; 
     taskPriority priority;
     int weight;
+=======
+//23303
+//assignment 3
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+
+//structure to store data 
+struct element{
+    int data;
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
     struct element *next;
 };
 
@@ -28,11 +41,16 @@ typedef struct element element;
 //class to create a queue 
 class queue{
     private:
+<<<<<<< HEAD
     //top and end of the queue
+=======
+    //top of the queue
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
     element *top;
     element *end;
 
     public:
+<<<<<<< HEAD
     void loadCSV(string csvFile);
     void saveToCSV(string csvFile);
     taskPriority priorityDecider(int x);
@@ -145,6 +163,29 @@ element* queue::getElement(int weight, string title, taskPriority priority){
     temp->title = title;
     temp->weight = weight;
     temp->priority = priority;
+=======
+    element *getElement(int data);
+    void mPush(element *temp);
+    int mPop();
+    int mPeep();
+    void mInitialize();
+
+    queue(){
+        //constructor initializes the top and runs the initialize function
+        top = NULL;
+        end = NULL;
+        mInitialize();
+    }
+};
+
+//creates an element for the queue
+element* queue::getElement(int data){
+    //declaring a temp element
+    element *temp;
+    temp = new(element);
+    //assigning values to temp element
+    temp->data = data;
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
     temp->next = NULL;
     
     return temp;
@@ -168,6 +209,7 @@ void queue::mPush(element *temp){
     }
 }
 
+<<<<<<< HEAD
 //returns the top of the queue
 int queue::mPeep(){
     cout<<"Time : "<<top->weight<<"\t Task : "<<top->title<<"\tPriority :"<<top->priority<<endl;
@@ -192,12 +234,48 @@ int queue::mPop(){
 }
 
 
+=======
+//initializing list, used in constructor
+void queue::mInitialize(){
+    int continueChecker = 0;
+    while(continueChecker == 0){
+        cout<<"enter integer that will enter the queue : ";
+        int x;
+        cin>>x;
+        mPush(getElement(x));
+        cout<<"enter 0 to continue, any other integer to end : ";
+        cin>>continueChecker;
+        cout<<endl;
+    }
+}
+
+//returns the top of the queue
+int queue::mPeep(){
+    cout<<top->data<<endl;
+    return top->data;
+}
+
+//pops the data from the top of the queue and pops and returns it
+int queue::mPop(){
+    cout<<"Popped data : "<<top->data<<endl;
+    element *temp = new(element);
+    temp = top;
+    int x;
+    x = temp->data;
+    top = temp->next;
+    delete temp;
+    cout<<"Popped data cleared from memory"<<endl;
+    return x;
+}
+
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
 int main(){
     //obj created, constructor called
     queue q;
     
     //while loop for continued operation
     int continueChecker = 0;
+<<<<<<< HEAD
     q.loadCSV("csvIngestFile.csv");
     while(continueChecker == 0){
         cout<<"--------------------------------------------TASK MENU--------------------------------------------"<<endl;
@@ -206,11 +284,20 @@ int main(){
         int operation;
         cin>>operation;
         string tempt;
+=======
+    while(continueChecker == 0){
+        cout<<"--------------------------------------------QUEUE MENU--------------------------------------------"<<endl;
+        cout<<"Operations : \n\t1.Push data\n\t2.Pop data\n\t3.Peep data"<<endl;
+        cout<<"Enter operation : ";
+        int operation;
+        cin>>operation;
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
 
         //switch case for operations
         switch (operation)
         {
         case 1:
+<<<<<<< HEAD
             //entering a new task 
             cout<<"Enter time taken for the task : ";
             int x;
@@ -225,6 +312,15 @@ int main(){
             q.mPush(q.getElement(x, tempt,q.priorityDecider(y)));
             cout<<endl;
             cout<<"task entered."<<endl;
+=======
+            cout<<endl<<"Enter Data : ";
+            int x;
+            cin>>x;
+            //get element returns type element which is accepted by mPush fn 
+            q.mPush(q.getElement(x));
+            cout<<endl;
+            cout<<"Data entered."<<endl;
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
             break;
         case 2: 
             q.mPop();
@@ -242,6 +338,10 @@ int main(){
         cin>>continueChecker;
         cout<<endl;
     }
+<<<<<<< HEAD
     q.saveToCSV("csvOutputFile.csv");
     return 0;
+=======
+
+>>>>>>> 3926075278d2e563d2f14a0bd4d300e6c0b2daa3
 }
